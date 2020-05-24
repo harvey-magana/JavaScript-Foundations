@@ -96,7 +96,19 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
-
+function variableInterestRate(principal, rate, years, name) {
+    for (let i = 0; i < 10; i++) {
+        rate = rate + 0.005
+        var annum = 12;
+        var monthlyInterestRate = rate/annum;
+        var periods = years * annum;
+        var finance = Math.pow(1 + monthlyInterestRate, periods);
+        var numerator = monthlyInterestRate * finance;
+        var denominator = finance - 1;
+        var monthlyRate = principal * (numerator/denominator);
+        console.log(name + ", with an interest rate of " + rate.toFixed(3) + ", your monthly rate is " + monthlyRate.toFixed(0) + ".");
+    }
+}
 
 
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
