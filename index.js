@@ -59,7 +59,25 @@ mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 Then, add control flow within your function such that IF creditScore is above 740, interest rate drops by 0.5%, if credit score is below 660, interest rate increases by 0.5% and if credit score is anywhere between 660 and 740 interest rate doesn't change.
 */
 
+function mortgageCalculator(principal, rate, years, fico, name) {
+    if(fico > 740) {
+        rate = rate - (rate * 0.05);
+    } else if (fico < 660) {
+        rate = rate + (rate * 0.05);
+    } else if (fico < 740 && fico > 660) {
+        rate = rate;
+    }
 
+    var annum = 12;
+    var monthlyInterestRate = rate/annum;
+    var periods = years * annum;
+    var finance = Math.pow(1 + monthlyInterestRate, periods);
+    var numerator = monthlyInterestRate * finance;
+    var denominator = finance - 1;
+    var monthlyRate = principal * (numerator/denominator);
+
+    return `${name}, your monthly rate if ${monthlyRate.toFixed(2)}`;
+}
 
 
 // 🏡 Task 6: Loops
