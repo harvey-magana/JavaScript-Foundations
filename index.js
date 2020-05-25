@@ -136,7 +136,29 @@ function mortgageCalculator(principal, rate, years, income, name) {
 
 
 /* 🏡 Explore using `window.prompt()` to allow a user to input parameters in the browser */
+function mortgageCalculator(principal, rate, years, income, name) {
+    const annum = 12;
+    var monthlyInterestRate = rate/annum;
+    var periods = years * annum;
+    var finance = Math.pow(1 + monthlyInterestRate, periods);
+    var numerator = monthlyInterestRate * finance;
+    var denominator = finance - 1;
+    var monthlyRate = principal * (numerator/denominator);
+    var propTax = (principal/1000) * 1;
+    var propIns = ((principal/1000) * 3.50)/annum;
+    var piti = monthlyRate + propTax + propIns;
 
+    var answers = [principal, rate, years, income, name];
+    for (var i = 0; i < answers.length; i++){
+        window.prompt("What is your principal?", answers[0])
+        window.prompt("What is your rate?", answers[1])
+        window.prompt("How many years will your loan be?", answers[2])
+        window.prompt("What is your annual income?", answers[3])
+        window.prompt("What is your first name?", answers[4])
+    }
+
+    return `${name}, your monthly rate with PITI included is $${piti.toFixed(2)}`;
+}
 
 /* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
 function variableInterestRate(principal, rate, years, name) {
