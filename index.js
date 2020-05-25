@@ -76,7 +76,7 @@ function mortgageCalculator(principal, rate, years, fico, name) {
     var denominator = finance - 1;
     var monthlyRate = principal * (numerator/denominator);
 
-    return `${name}, your monthly rate if ${monthlyRate.toFixed(2)}`;
+    return `${name}, your monthly rate is ${monthlyRate.toFixed(2)}`;
 }
 
 
@@ -117,6 +117,20 @@ function variableInterestRate(principal, rate, years, name) {
 
 /*  🏡 Add  `Property Tax`, `Homeowner's insurance` and `HOA fees` as parameters in your function to calculate total monthly spending on housing */
 
+function mortgageCalculator(principal, rate, years, income, name) {
+    var annum = 12;
+    var monthlyInterestRate = rate/annum;
+    var periods = years * annum;
+    var finance = Math.pow(1 + monthlyInterestRate, periods);
+    var numerator = monthlyInterestRate * finance;
+    var denominator = finance - 1;
+    var monthlyRate = principal * (numerator/denominator);
+    var propTax = (principal/1000) * 1;
+    var propIns = ((principal/1000) * 3.50)/annum;
+    var piti = monthlyRate + propTax + propIns;
+
+    return `${name}, your monthly rate with PITI included is $${piti.toFixed(2)}`;
+}
 
 /* 🏡 Build a calculator function that accepts `monthly payment` and `interest rate` and returns the maximum loan that a person could afford */
 
