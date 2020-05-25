@@ -68,13 +68,13 @@ function mortgageCalculator(principal, rate, years, fico, name) {
         rate = rate;
     }
 
-    var annum = 12;
-    var monthlyInterestRate = rate/annum;
-    var periods = years * annum;
-    var finance = Math.pow(1 + monthlyInterestRate, periods);
-    var numerator = monthlyInterestRate * finance;
-    var denominator = finance - 1;
-    var monthlyRate = principal * (numerator/denominator);
+    const annum = 12;
+    let monthlyInterestRate = rate/annum;
+    let periods = years * annum;
+    let finance = Math.pow(1 + monthlyInterestRate, periods);
+    let numerator = monthlyInterestRate * finance;
+    let denominator = finance - 1;
+    let monthlyRate = principal * (numerator/denominator);
 
     return `${name}, your monthly rate is ${monthlyRate.toFixed(2)}`;
 }
@@ -99,7 +99,7 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 function variableInterestRate(principal, rate, years, name) {
     for (let i = 0; i < 10; i++) {
         rate = rate + 0.005
-        var annum = 12;
+        const annum = 12;
         var monthlyInterestRate = rate/annum;
         var periods = years * annum;
         var finance = Math.pow(1 + monthlyInterestRate, periods);
@@ -118,7 +118,7 @@ function variableInterestRate(principal, rate, years, name) {
 /*  🏡 Add  `Property Tax`, `Homeowner's insurance` and `HOA fees` as parameters in your function to calculate total monthly spending on housing */
 
 function mortgageCalculator(principal, rate, years, income, name) {
-    var annum = 12;
+    const annum = 12;
     var monthlyInterestRate = rate/annum;
     var periods = years * annum;
     var finance = Math.pow(1 + monthlyInterestRate, periods);
@@ -143,7 +143,7 @@ function variableInterestRate(principal, rate, years, name) {
     var goingRates = [0.0275, 0.0297, 0.0311, 0.032, 0.0351];
     for (let i = 0; i < goingRates.length; i++) {
         rate = rate + goingRates[i]
-        var annum = 12;
+        const annum = 12;
         var monthlyInterestRate = rate/annum;
         var periods = years * annum;
         var finance = Math.pow(1 + monthlyInterestRate, periods);
