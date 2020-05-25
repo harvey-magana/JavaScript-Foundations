@@ -139,3 +139,17 @@ function mortgageCalculator(principal, rate, years, income, name) {
 
 
 /* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
+function variableInterestRate(principal, rate, years, name) {
+    var goingRates = [0.0275, 0.0297, 0.0311, 0.032, 0.0351];
+    for (let i = 0; i < goingRates.length; i++) {
+        rate = rate + goingRates[i]
+        var annum = 12;
+        var monthlyInterestRate = rate/annum;
+        var periods = years * annum;
+        var finance = Math.pow(1 + monthlyInterestRate, periods);
+        var numerator = monthlyInterestRate * finance;
+        var denominator = finance - 1;
+        var monthlyRate = principal * (numerator/denominator);
+        console.log(name + ", with an interest rate of " + rate.toFixed(3) + ", your monthly rate is " + monthlyRate.toFixed(0) + ".");
+    }
+}
