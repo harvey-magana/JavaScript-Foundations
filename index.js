@@ -61,7 +61,7 @@ Then, add control flow within your function such that IF creditScore is above 74
 
 function mortgageCalculator(principal, rate, years, fico, name) {
     if(fico > 740) {
-        rate = rate - (rate * 0.05);
+        rate = rate - (rate * 0.005);
     } else if (fico < 660) {
         rate = rate + (rate * 0.05);
     } else if (fico < 740 && fico > 660) {
