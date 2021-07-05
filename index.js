@@ -59,7 +59,25 @@ mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 Then, add control flow within your function such that IF creditScore is above 740, interest rate drops by 0.5%, if credit score is below 660, interest rate increases by 0.5% and if credit score is anywhere between 660 and 740 interest rate doesn't change.
 */
 
+function mortgageCalculator(principal, rate, years, fico, name) {
+    if(fico > 740) {
+        rate = rate - (rate * 0.005);
+    } else if (fico < 660) {
+        rate = rate + (rate * 0.05);
+    } else if (fico < 740 && fico > 660) {
+        rate = rate;
+    }
 
+    const annum = 12;
+    let monthlyInterestRate = rate/annum;
+    let periods = years * annum;
+    let finance = Math.pow(1 + monthlyInterestRate, periods);
+    let numerator = monthlyInterestRate * finance;
+    let denominator = finance - 1;
+    let monthlyRate = principal * (numerator/denominator);
+
+    return `${name}, your monthly rate is ${monthlyRate.toFixed(2)}`;
+}
 
 
 // 🏡 Task 6: Loops
@@ -78,7 +96,19 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
-
+function variableInterestRate(principal, rate, years, name) {
+    for (let i = 0; i < 10; i++) {
+        rate = rate + 0.005
+        const annum = 12;
+        var monthlyInterestRate = rate/annum;
+        var periods = years * annum;
+        var finance = Math.pow(1 + monthlyInterestRate, periods);
+        var numerator = monthlyInterestRate * finance;
+        var denominator = finance - 1;
+        var monthlyRate = principal * (numerator/denominator);
+        console.log(name + ", with an interest rate of " + rate.toFixed(3) + ", your monthly rate is " + monthlyRate.toFixed(0) + ".");
+    }
+}
 
 
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
@@ -87,11 +117,61 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 
 /*  🏡 Add  `Property Tax`, `Homeowner's insurance` and `HOA fees` as parameters in your function to calculate total monthly spending on housing */
 
+function mortgageCalculator(principal, rate, years, income, name) {
+    const annum = 12;
+    var monthlyInterestRate = rate/annum;
+    var periods = years * annum;
+    var finance = Math.pow(1 + monthlyInterestRate, periods);
+    var numerator = monthlyInterestRate * finance;
+    var denominator = finance - 1;
+    var monthlyRate = principal * (numerator/denominator);
+    var propTax = (principal/1000) * 1;
+    var propIns = ((principal/1000) * 3.50)/annum;
+    var piti = monthlyRate + propTax + propIns;
+
+    return `${name}, your monthly rate with PITI included is $${piti.toFixed(2)}`;
+}
 
 /* 🏡 Build a calculator function that accepts `monthly payment` and `interest rate` and returns the maximum loan that a person could afford */
 
 
 /* 🏡 Explore using `window.prompt()` to allow a user to input parameters in the browser */
+function mortgageCalculator(principal, rate, years, income, name) {
+    const annum = 12;
+    var monthlyInterestRate = rate/annum;
+    var periods = years * annum;
+    var finance = Math.pow(1 + monthlyInterestRate, periods);
+    var numerator = monthlyInterestRate * finance;
+    var denominator = finance - 1;
+    var monthlyRate = principal * (numerator/denominator);
+    var propTax = (principal/1000) * 1;
+    var propIns = ((principal/1000) * 3.50)/annum;
+    var piti = monthlyRate + propTax + propIns;
 
+    var answers = [principal, rate, years, income, name];
+    for (var i = 0; i < answers.length; i++){
+        window.prompt("What is your principal?", answers[0])
+        window.prompt("What is your rate?", answers[1])
+        window.prompt("How many years will your loan be?", answers[2])
+        window.prompt("What is your annual income?", answers[3])
+        window.prompt("What is your first name?", answers[4])
+    }
+
+    return `${name}, your monthly rate with PITI included is $${piti.toFixed(2)}`;
+}
 
 /* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
+function variableInterestRate(principal, rate, years, name) {
+    var goingRates = [0.0275, 0.0297, 0.0311, 0.032, 0.0351];
+    for (let i = 0; i < goingRates.length; i++) {
+        rate = rate + goingRates[i]
+        const annum = 12;
+        var monthlyInterestRate = rate/annum;
+        var periods = years * annum;
+        var finance = Math.pow(1 + monthlyInterestRate, periods);
+        var numerator = monthlyInterestRate * finance;
+        var denominator = finance - 1;
+        var monthlyRate = principal * (numerator/denominator);
+        console.log(name + ", with an interest rate of " + rate.toFixed(3) + ", your monthly rate is " + monthlyRate.toFixed(0) + ".");
+    }
+}
